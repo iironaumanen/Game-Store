@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+{% load static %}
+
+
+<html>
+<head>
+    <script src="{% static "game_store/jquery-3.3.1.min.js" %}"></script>
+</head>
+<body>
+    <canvas></canvas>
+    <script src="{% static 'game_store/own_game/point.js' %}"></script>
+    <script src="{% static 'game_store/own_game/box.js' %}"></script>
+    <script src="{% static 'game_store/own_game/game.js' %}"></script>
+    <div style='padding-top: 10px'>Move the box using arrow keys. Collect green dots for points while avoiding the borders.</div>
+    <div style='padding-top: 5px'>
+      <button id='submit'>Submit score</button>
+      <button id='save'>Save game</button>
+      <button id='load'>Load game</button>
+    </div>
+</body>
+</html>

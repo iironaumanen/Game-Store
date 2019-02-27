@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+
+{% block title %}LaTeLaTeGaMeS game search{% endblock %}
+
+{% block pagetitle %}Search games{% endblock %}
+
+{% block subtitle %}And no, we don't have runescape, sorry.{% endblock %}
+
+{% block main_content %}{% endblock %}
+
+{% block text_content %}
+<form method="GET" class="row">
+  <br>
+    <div class="col-1"></div>
+    <input class="form-control col-8" type="text" name="game_title" placeholder="Search for a game...">
+    <input type="submit" class="btn btn-primary col-2" value="Go!">
+    <div class="col-1"></div>
+</form>
+<br>
+<div class="list-group">
+  {% for game in games %}
+    <a class="list-group-item list-group-item-action" href="/game/{{game.title}}">{{ game.title }}</a>
+  {% endfor %}
+</div>
+
+{% endblock %}

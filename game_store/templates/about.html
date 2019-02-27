@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>LaTeLaTeGaMeS takes no responsibility for any impairment of user sanity</title>
+    <script src="{% static "game_store/jquery-3.3.1.min.js" %}"></script>
+    <link rel="stylesheet" href="{% static 'game_store/about/aboutstyle.css' %}">
+  </head>
+  <body style='background: url("{% static 'game_store/about/cancer_emoji.png' %}") no-repeat center center fixed; background-size: 100%;'>
+    <img src="{% static 'game_store/about/frog.gif' %}" id="frog" class="slider">
+    <img src="{% static 'game_store/about/snoop.gif' %}" id="snoop" class="slider">
+    <img src="{% static 'game_store/about/bigguy.gif' %}" id="bigguy" class="slider">
+    <img src="{% static 'game_store/about/doge.gif' %}" id="doge" class="slider">
+    <img src="{% static 'game_store/about/nyan.gif' %}" id="nyan" class="slider">
+    <div id="main-text">
+        <h2 id="title">LaTeLaTeGaMeS</h2>
+        <h3>The best games store on the planet.</h3>
+        <h4><q><i>When I first laid my eyes on the LaTeLaTeGaMeS home page, it was as if god himself had descended upon this earth and blessed the site.</i></q> <br>-Abraham Lincoln<sup></sup><i> probably</i><sup></sup></h4>
+
+        <h4>Brought to you by the LaTeLaTeGaMeS team:<br/>Atte, Iiro, Late<br/>&lt;3</h4>
+    </div>
+    <script type="text/javascript">
+      const cancer_emoji_src = "{% static 'game_store/about/cancer_emoji.png' %}"
+      const rip_ears_src = "{% static 'game_store/about/rip_ears.mp3' %}"
+      const static_src = "{% static 'game_store/about/' %}"
+    </script>
+    <script src="{% static 'game_store/about/aboutJS.js' %}"></script>
+    <div id="front"></div>
+  </body>
+</html>

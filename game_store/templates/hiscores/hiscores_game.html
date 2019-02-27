@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+
+{% block title %}LaTeLaTeGaMeS Hi-scores{% endblock %}
+
+{% block pagetitle %}Hi-scores{% endblock %}
+
+{% block subtitle %}Scores for {{game}}{% endblock %}
+
+{% block main_content %}
+{% if message %}
+<div class="alert alert-info">{{ message }}</div>
+{% endif %}
+{% endblock %}
+
+{% block text_content %}
+<div class="score-container">
+    <span class="list-of-scores">
+        <table class="table table-striped">
+            <tr>
+                <th>Rank</th>
+                <th>Player</th>
+                <th>Score</th>
+                <th>Date</th>
+            </tr>
+            {% for score in scores  %}
+            {% if score.submitter.username == user_score.first.submitter.username and score.score == user_score.first.score %}
+            <tr class="table-primary">
+            {% else %}
+            <tr>
+            {% endif %}
+                <td>{{forloop.counter}}</td>
+                <td>{{score.submitter.username}}</td>
+                <td>{{score.score}}</td>
+                <td>{{score.time}}</td>
+            </tr>
+            {% endfor %}
+            {% if not contains and index != -1 %}
+            <tr class="table-primary">
+                <td>{{index}}</td>
+                <td>{{user_score.first.submitter.username}}</td>
+                <td>{{user_score.first.score}}</td>
+                <td>{{user_score.first.time}}</td>
+            </tr>
+            {% endif %}
+        </table>
+    </span>
+</div>
+{% endblock %}

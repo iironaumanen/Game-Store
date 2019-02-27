@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+
+{% block pagetitle %}Change account type{% endblock %}
+{% block subtitle %}{% endblock %}
+
+{% block main_content %}
+{% if message %}
+<div class="alert alert-info">{{ message }}</div>
+{% endif %}
+
+{% if not user.is_developer  %}
+<div class="form-group">
+    {% csrf_token %}
+    <label for="submit">Do you want to change the account type to Developer?</label><br/>
+    <small class="form-text">You will <b>not</b> lose any permissions in the process.</small><br/>
+    <a href="?convert=true" name="submit" class="btn btn-primary">Apply</a>
+</div>
+
+{% else %}
+
+<div class="alert alert-info">You are already a developer.</div>
+
+{% endif %}
+{% endblock %}
+
+{% block text_content %}
+{% endblock %}

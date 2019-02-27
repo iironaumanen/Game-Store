@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+
+{% block title %}Unable to play{% endblock %}
+
+{% block pagetitle %}Unable to play{% endblock %}
+
+{% block subtitle %}{% endblock %}
+
+{% block main_content %}{% endblock %}
+
+{% block text_content %}
+	<h2>Please buy [{{title}}]!</h2>
+	<form action="http://payments.webcourse.niksula.hut.fi/pay/" method="POST">
+		<input type="hidden" name="pid" value="{{pid}}" />
+		<input type="hidden" name="sid" value="{{sid}}" />
+		<input type="hidden" name="success_url"
+						value="http://localhost:8000/payment/success/" />
+		<input type="hidden" name="cancel_url"
+						value="http://localhost:8000/payment/cancel/" />
+		<input type="hidden" name="error_url"
+						value="http://localhost:8000/payment/error/" />
+		<input type="hidden" name="checksum"
+						value="{{checksum}}" />
+		<label for="id_amount">Amount</label> <br />
+		<input type="text" id="id_amount" name="amount" value="{{amount}}" /> <br 7>
+		<input type="submit" value="BUY NOW!"/>
+	</form>
+{% endblock %}

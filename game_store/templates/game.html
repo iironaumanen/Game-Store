@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+
+{% block title %}GAME ON!!!{% endblock %}
+
+{% block pagetitle %}Play {{gameTitle}}{% endblock %}
+
+{% block subtitle %}{% endblock %}
+
+{% block main_content %}{% endblock %}
+
+{% block text_content %}
+{% if not user.is_authenticated %}
+  <h1>Please log in to view this page</h1>
+{% else %}
+  <iframe id="game-frame" src="{{ sourceURL }}" height="300" width="750" align="middle" scrolling="no"></iframe>
+  <a  href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+      class="twitter-share-button"
+      data-text="Check out this epic game from LaTeLaTeGaMeS!"
+      data-hashtags="LaTeLaTeGaMeS"
+      data-lang="en"
+      data-dnt="true"
+      data-show-count="false">Tweet</a>
+      <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  {% csrf_token %}
+  <script type="text/javascript">
+    $(function(){
+      function handling(e) {
+        switch(e.data.messageType) {
+          case 'SETTING':
+            document.getElementById('game-frame').width = e.data.options.width;
+            document.getElementById('game-frame').height = e.data.options.height;
+            break;
+          case 'SCORE':
+            $.post('/api/v1/score', {
+              csrfmiddlewaretoken: document.getElementsByName('csrfmiddlewaretoken')[0].value,
+              score: e.data.score,
+              title: '{{gameTitle}}'
+            });
+            break;
+          case 'SAVE':
+            $.post('/api/v1/save', {
+              csrfmiddlewaretoken:
+
+               document.getElementsByName('csrfmiddlewaretoken')[0].value,
+              data: JSON.stringify(e.data.gameState),
+              title: '{{gameTitle}}'
+            });
+            break;
+          case 'LOAD_REQUEST':
+            $.get('/api/v1/load', { title: '{{gameTitle}}' })
+              .done(function( data ) {
+                load = {
+                  messageType: 'LOAD',
+                  gameState: JSON.parse(data),
+                }
+                iframe = document.getElementById('game-frame');
+                iframe.contentWindow.postMessage(load, '*');
+            });
+            break;
+          default:
+            break;
+        }
+      }
+      if (!window.addEventListener) { // <= IE8
+        window.attachEvent("onmessage", handling);
+      } else { // > IE8
+        window.addEventListener('message', handling, false);
+      }
+    })
+  </script>
+{% endif %}
+{% endblock %}

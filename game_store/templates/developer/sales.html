@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+
+{% block pagetitle %}Game sale statistics{% endblock %}
+{% block subtitle %}Here you can see the sales from your game <b>{{game_title}}</b>{% endblock %}
+
+
+{% block main_content %}
+{% if user.is_developer %}
+    <table class="table table-sm">
+        <tr class="thead-dark">
+            <th>ID</th>
+            <th>Date</th>
+            <th>User</th>
+        </tr>
+    {% for sale in sales %}
+        <tr>
+            <td>{{sale.id}}</td>
+            <td>{{sale.date}}</td>
+            <td>{{sale.buyer}}</td>
+        </tr>
+    {% endfor %}
+    </table>
+{% else %}
+    <p>Please log in as a developer to view your game sales.</p>
+{% endif %}
+{% endblock %}
+
+{% block text_content %}
+{% endblock %}

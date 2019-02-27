@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+
+{% block pagetitle %}Your games{% endblock %}
+{% block subtitle %}Here you can modify your games and see sales for them.{% endblock %}
+
+{% block main_content %}
+{% if user.is_developer %}
+    <ul class="list-group">
+    {% for game in games %}
+        <span class="list-group-item list-group-item-action">
+            <a class="align-middle m-1" href="/game/{{game.title}}">
+                {{game.title}} ({{game.price}} &euro;)
+            </a>
+            <form class="float-right inline m-1" method="get" action="/dev/remove_game/{{game.title}}">
+                <button type="submit" class="btn btn-sm">X</button>
+            </form>
+            <form class="float-right inline m-1" method="get" action="/dev/modify_game/{{game.title}}">
+                <button type="submit" class="btn btn-sm">Modify</button>
+            </form>
+            <form class="float-right inline m-1" method="get" action="/dev/sales/{{game.title}}">
+                <button type="submit" class="btn btn-sm">Sales</button>
+            </form>
+        </span>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Please log in as a developer to view your own games.</p>
+{% endif %}
+{% endblock %}
+
+{% block text_content %}
+{% endblock %}

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+
+{% block title %}LaTeLaTeGaMeS main page{% endblock %}
+
+{% block pagetitle %}Main page{% endblock %}
+
+{% block subtitle %}Welcome to LaTeLaTeGaMeS{% if user.is_authenticated %}, {{user.username}}!{% endif %}
+{% endblock %}
+
+{% block main_content %}{% endblock %}
+
+{% block text_content %}
+  <p>Check out our awesome selection of games! In case you don't see any, go ahead and add your own!</p>
+  <p>The current time is {{ time }}</p>
+{% endblock %}

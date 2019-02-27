@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+
+{% block title %}LaTeLaTeGaMeS Hi-scores{% endblock %}
+
+{% block pagetitle %}Hi-scores{% endblock %}
+
+{% block subtitle %}Choose a game to view scores{% endblock %}
+
+{% block main_content %}
+{% if message %}
+<div class="alert alert-info">{{ message }}</div>
+{% endif %}
+{% endblock %}
+
+{% block text_content %}
+<div class="list-group">
+    <span class="list-of-games">
+        {% for game in games %}
+            <a href="/hiscores/{{game.title}}" class="list-group-item list-group-item-action">{{ game.title }}</a>
+        {% endfor %}
+    </span>
+</div>
+{% endblock %}

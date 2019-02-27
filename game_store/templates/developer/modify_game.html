@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+
+{% block pagetitle %}Modify game{% endblock %}
+{% block subtitle %}Here you can modify the name and price of a game.{% endblock %}
+
+{% block main_content %}
+
+{% if message %}
+<div class="alert alert-info">{{ message }}</div>
+{% endif %}
+
+{% if user.is_developer %}
+<form id="add_game_form" action="/dev/modify_game/{{game_title}}" method="POST">
+  {% csrf_token %}
+  <div class="form-group p-1">
+    <label for="game_title">Game title</label><br />
+    <input type="text" value="{{game_title}}"class="form-control" name="game_title" placeholder="Game title"/>
+    <small class="text-muted">(Title may only contain letters and these symbols: . , - ! ' )</small>
+  </div>
+  <div class="form-group p-1">
+    <label for="game_price">Price</label><br />
+    <input type="number" value="{{game_price}}" class="form-control" name="game_price" placeholder="Game price" step="0.01" min="0"/>
+  </div>
+
+  <div class="form-group">
+    <label>Categories</label>
+    <ul class="list-group list-group-flush m-1 p-2 border rounded" style="height: 180px; overflow-y: auto;">
+      {% for category in all_categories %}
+      <li class="list-group-item">
+        <label for="game_categories">
+          <input type="checkbox" class="checkbox" name="game_categories" value="{{category.name}}"
+          {% if category in game_categories %}checked{% endif %}>
+          {{category.name}}
+          </input>
+        </label>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <input type="submit" class="btn btn-primary mb-5" />
+</form>
+{% else %}
+<p>Please log in as a developer in order to modify your games.</p>
+{% endif %}
+{% endblock %}
+
+{% block text_content %}
+{% endblock %}

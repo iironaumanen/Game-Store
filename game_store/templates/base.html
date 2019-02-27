@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+{% load static %}
+
+<!--
+Blocks:
+head: additional head content
+title: page title
+navbar: navigation bar\
+headertitle
+pagetitle
+subtitle
+main_content
+text_content
+sidecard1
+sidecard2
+sidecard3
+footer_text
+-->
+
+
+<html lang="en">
+<head>
+  <!-- Meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="shortcut icon" type="image/png" href="{% static 'game_store/favicon.ico' %}"/>
+
+  <!-- Old CSS -->
+  <!-- <link rel="stylesheet" type="text/css" href="{% static "game_store/style.css" %}" /> -->
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+  <!-- jQuery -->
+  <script src="{% static "game_store/jquery-3.3.1.min.js" %}"></script>
+
+  <!-- Custom styling -->
+  <link rel="stylesheet" href="{% static 'game_store/newstyle.css' %}">
+
+  {% block head %}{% endblock%}
+
+  <title>{% block title %}LaTeLaTeGaMeS InC. (TM) &copy; 1998-2019 #yees{% endblock %}</title>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="/">{% block headertitle %}LaTeLaTeGaMeS{% endblock %}</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          {% block navbar %}
+            <li class="nav-item active">
+              <a class="nav-link" href="/home">Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/game">Games</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/api/v1/games">REST API</a>
+            </li>
+            {% if user.is_staff %}
+            <li class="nav-item">
+              <a class="nav-link" href="/admin">Admin</a>
+            </li>
+            {% endif %}
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link" href="/hiscores">Hi-scores</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/dev">Developers</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/account/logout">Logout</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="/account/login">Log in</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/signup">Sign up</a>
+            </li>
+            {% endif %}
+          {% endblock %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+
+      <!-- Post Content Column -->
+      <div class="col-lg-8">
+
+        <!-- Page title -->
+        <h1 class="mt-4">{% block pagetitle %}pagetitle{% endblock %}</h1>
+
+        <!-- Smaller page title -->
+        <p class="lead">
+          {% block subtitle %}subtitle{% endblock %}
+        </p>
+
+        <hr>
+
+        <!-- Main content block (game etc.) -->
+        {% block main_content %}
+          <img class="img-fluid rounded" src="http://placehold.it/900x300" alt="">
+        {% endblock %} <!-- end content_main -->
+
+        {% if main_content %}
+          <hr>
+        {% endif %}
+
+        <!-- Post Content -->
+        {% block text_content %}
+        <p class="lead">LaTeLaTeLateLaTeLaTeLateLaTeLaTeLateLaTeLaTeLateLaTeLaTeLateLaTeLaTeLateLaTeLaTeLateLaTeLaTeLateLaTeLaTeLateLaTeLaTeLateLaTeLaTeLate</p>
+
+        <p>LaTeLaTeLateLaTeLaTeLateLaTeLaTeLateLaTeLaTeLateLaTeLaTeLateLaTeLaTeLateLaTeLaTeLateLaTeLaTeLateLaTeLaTeLateLaTeLaTeLateLaTeLaTeLate</p>
+
+        <p>LaTeLaTeLateLaTeLaTeLateLaTeLaTeLateLaTeLaTeLateLaTeLaTeLateLaTeLaTeLateLaTeLaTeLateLaTeLaTeLateLaTeLaTeLateLaTeLaTeLateLaTeLaTeLate</p>
+
+        <blockquote class="blockquote">
+          <p class="mb-0">LaTeLaTeLateLaTeLaTeLateLaTeLaTeLateLaTeLaTeLateLateLaTeLaTeLateLaTeLaTeLate</p>
+          <footer class="blockquote-footer">Late from
+            <cite title="Source Title">LaTeLaTeGaMeS</cite>
+          </footer>
+        </blockquote>
+
+        <p>LaTeLaTeLateLaTeLaTeLateLaTeLaTeLateLaTeLaTeLateLaTeLaTeLateLaTeLaTeLateLaTeLaTeLateLaTeLaTeLateLaTeLaTeLateLaTeLaTeLateLaTeLaTeLate</p>
+
+        <p>LaTeLaTeLateLaTeLaTeLateLaTeLaTeLateLaTeLaTeLateLaTeLaTeLateLaTeLaTeLateLaTeLaTeLateLaTeLaTeLateLaTeLaTeLateLaTeLaTeLateLaTeLaTeLate</p>
+
+        <hr>
+        {% endblock %} <!-- end text_content -->
+
+      </div>
+
+      <!-- Sidebar Widgets Column -->
+      <div class="col-md-4">
+
+        <!-- 1st side card, defaults to search -->
+        {% block sidecard1 %}
+          <div class="card my-4">
+            <h5 class="card-header">Search games</h5>
+            <div class="card-body">
+              <div class="input-group">
+                  <input type="text" id="search-field" name="gamename" class="form-control" placeholder="Search for...">
+                  <span class="input-group-btn">   <!-- TODO: FIX BUTTON POSITION NEXT TO TEXTFIELD -->
+                    <button id="search-button" class="btn btn-secondary" type="reset">Go!</button>
+                  </span>
+              </div>
+            </div>
+          </div>
+        {% endblock %} <!-- end sidecard1 -->
+
+        <!-- 2nd side card, defaults to category view -->
+        {% block sidecard2 %}
+          <div class="card my-4">
+            <h5 class="card-header">Categories</h5>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-lg-6">
+                  <ul class="list-unstyled mb-0">
+                    <li>
+                      <a href="/category/action">Action</a>
+                    </li>
+                    <li>
+                      <a href="/category/adventure">Adventure</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-lg-6">
+                  <ul class="list-unstyled mb-0">
+                    <li>
+                      <a href="/category/casual">Casual</a>
+                    </li>
+                    <li>
+                      <a href="/category/classic">Classic</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endblock %} <!-- end sidecard2 -->
+
+        <!-- 3dr side card, defaults to a text card -->
+        {% block sidecard3 %}
+          <div class="card my-4">
+            <h5 class="card-header">LaTeLaTeGaMeS</h5>
+            <div class="card-body">
+              LaTeLaTeGaMeS is your number uno provider for le epic geims & meymeys!
+            </div>
+          </div>
+        {% endblock %} <!-- end sidecard3 -->
+
+      </div>
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      {% if user.is_authenticated %}
+      <p class="text-center text-white">Currently logged in as {{user.username}}</p>
+      {% endif %}
+      <p class="m-0 text-center text-white">{% block footer_text %}Copyright &copy; LaTeLaTeGaMeS 2019{% endblock %}</p>
+      <p class="m-0 text-center text-white"><a href="/about">About us</a></p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- JS for Bootstrap -->
+  <!-- Popper.js  & Bootstrap JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="{% static "game_store/common.js" %}"></script>
+</body>
+</html>

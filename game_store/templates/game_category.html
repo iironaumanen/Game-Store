@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+
+{% extends "base.html" %}
+
+{% block title %}Game categories boiiiiiis{% endblock %}
+
+{% block pagetitle %}Game categories boiiiiiis{% endblock %}
+
+{% block subtitle %}{{category_title}} games{% endblock %}
+
+{% block main_content %}{% endblock %}
+
+{% block text_content %}
+  <br><br>
+  {% if not category %}
+    <h1>No games in this category!</h1>
+  {% else %}
+    {% for game in category %}
+          <li><a href="/game/{{ game.title }}">{{ game.title }}</a></li>
+    {% endfor %}
+  {% endif %}
+{% endblock %}

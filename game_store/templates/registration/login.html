@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block pagetitle %}Login{% endblock %}
+
+{% block subtitle %}Just do it{% endblock %}
+
+{% block main_content %}{% endblock %}
+
+{% block text_content %}
+  {% if user.is_authenticated %}
+    <h2>You have already been logged in!</h2>
+  {% else %}
+    <h2>Login</h2>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button class="btn btn-primary" type="submit">Login</button>
+      <a class="btn btn-outline-primary" href="{% url 'social:begin' 'google-oauth2' %}">
+          Login with Google
+      </a>
+    </form>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+
+{% block title %}LaTeLaTeGaMeS Developer panel{% endblock %}
+
+{% block pagetitle %}Developer panel{% endblock %}
+
+{% block subtitle %}Add, modify and manage your games here.{% endblock %}
+
+{% block main_content %}
+{% if message %}
+<div class="alert alert-info">{{ message }}</div>
+{% endif %}
+
+{% if not user.is_developer  %}
+    <h3>You're not a developer</h3>
+    <p>If you want to become a developer click the button below</p>
+
+    <a href="/dev/convert_to_developer/" class="btn btn-primary">Become a dev!</a>
+
+{% else %}
+
+<p>Welcome to your developer panel! Click below to add games or view existing ones.</p>
+<a class="btn btn-primary" href="/dev/add_game/">Add game</a>
+<a class="btn btn-primary" href="/dev/my_games/">My games</a>
+
+{% endif %}
+{% endblock %}
+
+{% block text_content %}
+{% endblock %}

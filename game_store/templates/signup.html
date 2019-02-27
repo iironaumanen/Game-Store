@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+
+{% block title %}Sign up{% endblock %}
+
+{% block pagetitle %}Sign up tard{% endblock %}
+
+{% block subtitle %}Just do it{% endblock %}
+
+{% block main_content %}{% endblock %}
+
+{% block head %}
+  <meta name="google-signin-scope" content="profile email">
+  <meta name="google-signin-client_id" content="820570350549-429olmoles80qbortq6fomroi1j9fgt9.apps.googleusercontent.com">
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+{% endblock %}
+
+{% block text_content %}
+  {% if user.is_authenticated  %}
+    <h2>You are already logged in!</h2>
+    <a class="btn btn-primary" href="{% url 'logout' %}">Logout</a>
+  {% else %}
+    <h2>Sign up</h2>
+    <form method="post">
+      {% csrf_token %}
+      {% for field in form %}
+      <p>
+        {{ field.label_tag }}<br/>
+        {{ field }}
+        {% if field.help_text %}
+          <small style="display: none">{{ field.help_text }}</small>
+        {% endif %}
+        {% for error in field.errors %}
+          <p style="color: red">{{ error }}</p>
+        {% endfor %}
+      </p>
+      {% endfor %}
+      <button type="submit">Sign up</button>
+    </form>
+    <a class="btn btn-primary" href="{% url 'social:begin' 'google-oauth2' %}">
+        Login with Google
+    </a>
+  {% endif %}
+{% endblock %}
