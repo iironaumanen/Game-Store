@@ -24,5 +24,7 @@ The project can be run in a local developments environment just like any typical
 However, the social authorization API keys in settings.py use environment variable hooks in order to hide them and obey Google’s guidelines.
 
 ## Screenshot
-#### More screenshots are found in the [screenshots folder]()
+#### More screenshots are found in the [screenshots folder](https://github.com/iironaumanen/Game-Store/tree/master/screenshots)
+
+![Image of the home page](https://github.com/iironaumanen/Game-Store/blob/master/screenshots/Screenshot%202019-02-27%20at%2012.37.54.png)
 
