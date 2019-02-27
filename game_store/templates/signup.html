@@ -3,7 +3,7 @@
 
 {% block title %}Sign up{% endblock %}
 
-{% block pagetitle %}Sign up tard{% endblock %}
+{% block pagetitle %}Sign up{% endblock %}
 
 {% block subtitle %}Just do it{% endblock %}
 
@@ -20,7 +20,6 @@
     <h2>You are already logged in!</h2>
     <a class="btn btn-primary" href="{% url 'logout' %}">Logout</a>
   {% else %}
-    <h2>Sign up</h2>
     <form method="post">
       {% csrf_token %}
       {% for field in form %}
