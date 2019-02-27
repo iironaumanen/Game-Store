@@ -3,9 +3,9 @@
 Project repository for WSD 2018 project
 
 #### Team members
-* Lauri Anttila #665869
-* Iiro Naumanen #605890
-* Atte Viitanen #598088
+* Lauri Anttila
+* Iiro Naumanen 
+* Atte Viitanen 
 
 ## Project Plan
 
