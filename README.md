@@ -5,7 +5,7 @@
 #### This project was done with the help of these guys
 [Iiro Naumanen (Me)](https://github.com/iironaumanen)<br />
 [Lauri Anttila](https://github.com/teekkari)<br />
-[Atte Viitanen](https://github.com/AttK0)
+[Atte Viitanen](https://github.com/viitana)
 
 ## Description of the software
 
